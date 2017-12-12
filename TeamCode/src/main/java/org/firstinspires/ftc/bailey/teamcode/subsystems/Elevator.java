@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.bailey.teamcode.hardware.BMotor;
+import org.firstinspires.ftc.bailey.teamcode.hardware.BTouchSensor;
 
 /**
  * Created by unbun on 12/12/2017
@@ -17,7 +18,7 @@ public class Elevator {
 
     //Harwade declared
     private BMotor winchMotor;
-    private TouchSensor bottomLimit;
+    private BTouchSensor bottomLimit;
 
     private final double WINCH_INCREMENT = 8.0;
     private final double MAX_HEIGHT = 32.0;
@@ -29,7 +30,7 @@ public class Elevator {
     //Timing for control
     ElapsedTime timer = new ElapsedTime();
 
-    public Elevator(BMotor winch, TouchSensor touch) {
+    public Elevator(BMotor winch, BTouchSensor touch) {
         this.winchMotor = winch;
         this.bottomLimit = touch;
     }
