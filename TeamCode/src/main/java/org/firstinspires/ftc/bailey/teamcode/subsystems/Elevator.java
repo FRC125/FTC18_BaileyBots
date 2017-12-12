@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.bailey.teamcode.subsystems;
 
-import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.bailey.teamcode.hardware.BMotor;
@@ -19,7 +18,7 @@ public class Elevator {
     //Harwade declared
     private BMotor winchMotor;
     private Intake liftIntake; // dis getting really meta w/ a subsystem in a subsystem.
-    private BTouchSensor bottomLimit;
+    private BTouchSensor limitSwitch;
 
     private final double WINCH_INCREMENT = 8.0;
     private final double MAX_HEIGHT = 32.0;
@@ -33,7 +32,7 @@ public class Elevator {
 
     public Elevator(BMotor winch, BTouchSensor touch, Intake intake) {
         this.winchMotor = winch;
-        this.bottomLimit = touch;
+        this.limitSwitch = touch;
         this.liftIntake = intake;
     }
 
@@ -41,8 +40,10 @@ public class Elevator {
      *@param power power to run winch
      */
     public void run(double power){
-        if(this.bottomLimit.isPressed()){
-            this.winchMotor.setPower(0);
+        if(this.limitSwitch.isPressed()){
+            this.resetWinch();
+            this.winchMotor.setPower(1.0);
+            this.winchMotor.setPower(0.);
         }else {
             this.winchMotor.setPower(power);
         }
@@ -71,6 +72,7 @@ public class Elevator {
     }
 
     public void resetWinch() {
+
         relativeClicks = winchMotor.getCurrentPos();
     }
 
@@ -79,7 +81,7 @@ public class Elevator {
     }
 
     public boolean getSwtichStatus(){
-        return bottomLimit.isPressed();
+        return limitSwitch.isPressed();
     }
 
     public Intake getLiftIntake(){
