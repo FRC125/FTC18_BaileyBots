@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  */
 
 
-@TeleOp(name = "TeleOp", group = "TeleOP")
+@TeleOp(name = "TeleOp", group = "TeleOp")
 
 public class MyOpMode extends OpMode {
 
