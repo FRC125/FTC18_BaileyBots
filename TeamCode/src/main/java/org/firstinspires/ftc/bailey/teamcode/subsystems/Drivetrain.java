@@ -126,7 +126,12 @@ public class Drivetrain {
         rightBackDrive.setPower(-rPower);
     }
 
+    /**
+     * automatically allows for turning based on inputs
+     * @param lPower
+     * @param rPower
+     */
     public void tankDrive(double lPower, double rPower){
-        this.tankDrive(lPower, rPower, false);
+        this.tankDrive(lPower, rPower, true);
     }
 }

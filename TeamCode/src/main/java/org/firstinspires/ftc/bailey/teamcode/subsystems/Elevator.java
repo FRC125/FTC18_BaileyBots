@@ -71,4 +71,13 @@ public class Elevator {
     public void resetWinch() {
         relativeClicks = winchMotor.getCurrentPos();
     }
+
+    public double getPosition(){
+        return winchMotor.getCurrentPos();
+    }
+
+    public boolean getSwtichStatus(){
+        return bottomLimit.isPressed();
+    }
 }
+

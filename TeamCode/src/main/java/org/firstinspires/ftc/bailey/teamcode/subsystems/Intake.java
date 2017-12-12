@@ -44,6 +44,11 @@ public class Intake {
         }
     }
 
+    public void stopIntake(){
+        leftTake.setPower(0);
+        rightTake.setPower(0);
+    }
+
     public void resetTiming() {
         relativeTime = timer.time(TimeUnit.SECONDS);
 
