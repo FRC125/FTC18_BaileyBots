@@ -30,6 +30,8 @@ public class BaileyMap {
     //Elevator
     DcMotor liftWinch;
     TouchSensor liftSwitch;
+    DcMotor liftIntakeL;
+    DcMotor liftIntakeR;
 
     //IMU
     BNO055IMU gyro; // pronouncecd " ji - row"
@@ -57,6 +59,8 @@ public class BaileyMap {
 
         liftWinch = hardwareMap.get(DcMotor.class, "lift_winch");
         liftSwitch = hardwareMap.get(TouchSensor.class, "lift_bottomLimit");
+        liftIntakeL = hardwareMap.get(DcMotor.class, "lift_intake_L");
+        liftIntakeR = hardwareMap.get(DcMotor.class, "lift_intake_R");
 
         gyro = hardwareMap.get(BNO055IMU.class, "gyro"); //IMU
     }

@@ -55,21 +55,26 @@ public class TeleOpMode1 extends OpMode {
     @Override
     public void loop() {
 
+        //Driving
         float left = -gamepad1.left_stick_y;
         float right = -gamepad1.right_stick_y;
         Robot.Drivetrain.tankDrive(left, right);
 
+        //Operating lift (simple rn, will implement incrementations later
         float lift_pow = -gamepad2.left_stick_y;
         Robot.Elevator.run(lift_pow);
 
-        if(gamepad2.a){
-            Robot.Intake.intake(true);
-        }else if(gamepad2.b){
+        //Operating intake
+        if(gamepad2.left_bumper){
+            Robot.Elevator.getLiftIntake().intake(false);
             Robot.Intake.intake(false);
+        }else if(gamepad2.right_bumper){
+            Robot.Elevator.getLiftIntake().intake(true);
+            Robot.Intake.intake(true);
         }else{
+            Robot.Elevator.getLiftIntake().stopIntake();
             Robot.Intake.stopIntake();
         }
-
 
         publishData();
 

@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.bailey.teamcode;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.bailey.teamcode.hardware.BGyro;
 import org.firstinspires.ftc.bailey.teamcode.hardware.BMotor;
@@ -25,13 +25,16 @@ public class BaileyBot {
     public Drivetrain Drivetrain;
 
     //Declaring intake motors and object
-    public BMotor leftTake;
-    public BMotor rightTake;
+    public BMotor leftIntake;
+    public BMotor rightIntake;
     public Intake Intake;
 
     //Declaring elevator motors, sensors, and object
     public BMotor liftWinch;
     public BTouchSensor liftSwitch;
+    public BMotor liftIntakeL;
+    public BMotor liftIntakeR;
+    public Intake liftIntake;
     public Elevator Elevator;
 
     //IMU
@@ -59,15 +62,18 @@ public class BaileyBot {
         Drivetrain = new Drivetrain(leftFrontDrive, leftBackDrive, rightFrontDrive, rightBackDrive, gyro);
 
         //Assigning Intake Motors and Object
-        leftTake = new BMotor(robotMap.leftIntake, BMotor.MotorType.RevHDHex);
-        rightTake = new BMotor(robotMap.rightIntake, BMotor.MotorType.RevHDHex);
-        Intake = new Intake(leftTake, rightTake);
+        leftIntake = new BMotor(robotMap.leftIntake, BMotor.MotorType.RevHDHex);
+        rightIntake = new BMotor(robotMap.rightIntake, BMotor.MotorType.RevHDHex);
+        Intake = new Intake(leftIntake, rightIntake);
+
 
         //Assigning Elevator Motors, Sensors, and Object
         liftWinch = new BMotor(robotMap.liftWinch, BMotor.MotorType.RevHDHex);
         liftSwitch = new BTouchSensor(robotMap.liftSwitch);
-        Elevator = new Elevator(liftWinch, liftSwitch);
+        liftIntakeL = new BMotor(robotMap.liftIntakeL, BMotor.MotorType.RevHDHex); // for lift intake
+        liftIntakeR = new BMotor(robotMap.liftIntakeR, BMotor.MotorType.RevHDHex); // for lift intake
+        liftIntake = new Intake(liftIntakeL, liftIntakeR); // lift intake
+        Elevator = new Elevator(liftWinch, liftSwitch, liftIntake);
 
     }
-
 }
