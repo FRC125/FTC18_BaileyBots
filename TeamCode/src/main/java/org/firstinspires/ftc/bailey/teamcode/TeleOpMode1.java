@@ -15,6 +15,7 @@ import static android.R.attr.right;
 
 /**
  * Created by unnas on 12/12/2017.
+ *
  */
 
 @TeleOp(name = "TeleOp 1", group = "Teleop")
@@ -64,7 +65,7 @@ public class TeleOpMode1 extends OpMode {
         float lift_pow = -gamepad2.left_stick_y;
         Robot.Elevator.run(lift_pow);
 
-        //Operating intake
+        //Operating intakes
         if(gamepad2.left_bumper){
             Robot.Elevator.getLiftIntake().intake(false);
             Robot.Intake.intake(false);
@@ -85,7 +86,9 @@ public class TeleOpMode1 extends OpMode {
         publishData();
 
         Robot.Elevator.run(0);
+        Robot.Elevator.getLiftIntake().stopIntake();
         Robot.Drivetrain.tankDrive(0, 0);
+        Robot.Intake.stopIntake();
     }
 
     private void publishData(){

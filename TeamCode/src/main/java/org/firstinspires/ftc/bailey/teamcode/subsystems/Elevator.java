@@ -70,6 +70,18 @@ public class Elevator {
         return POS_TOLELRANCE > Math.abs(diff); // return true when diff is w/in tolerance
     }
 
+    /**
+     * @param position 0-3
+     */
+    public boolean changePos(int position){
+        double setpoint = position * WINCH_INCREMENT;
+
+        double diff = setpoint - winchMotor.getCurrentPos();
+        double pow = kP * diff;
+        run(pow);
+        return POS_TOLELRANCE > Math.abs(diff); // return true when diff is w/in tolerance
+    }
+
     public void resetWinch() {
         relativeClicks = winchMotor.getCurrentPos();
     }
