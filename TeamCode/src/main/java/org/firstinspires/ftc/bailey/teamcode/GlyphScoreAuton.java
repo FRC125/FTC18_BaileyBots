@@ -1,16 +1,12 @@
-package org.firstinspires.ftc.bailey.teamcode.subsystems;
+package org.firstinspires.ftc.bailey.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;/
-        import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-        import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-
 import org.firstinspires.ftc.bailey.teamcode.BaileyBot;
-import org.firstinspires.ftc.teamcode.BB18;
 
 /**
- * Created by josh on 11/28/17.
+ * Created by unnas on 11/28/17.
+ *
  */
 
 @Autonomous(name="DrivePIDTEST", group="Auto Testing")
@@ -43,28 +39,23 @@ public class DrivePIDTEST extends OpMode
 
         switch (autoState) {
             case 0:
-                if(Robot.Drivetrain.distanceDrive(10.0)){
+                if(Robot.Drivetrain.distanceDrive(10.0)){ // drive forward 10 ft
                     autoState = 1;
                     Robot.Drivetrain.resetDriveDistance();
                 }
                 break;
             case 1:
-                if(Robot.Drivetrain.turnToAngle(90.0)) {
+                if(Robot.Drivetrain.turnToAngle(90.0)) { // turn 90 deg
                     autoState = 2;
                     Robot.Drivetrain.setAngleToHold(90.0);
                 }
                 break;
             case 2:
-                if(Robot.Drivetrain.distanceDrive(5.0)) {
+                if(Robot.Drivetrain.distanceDrive(5.0)) { // drive forward 5 ft
                     autoState = 3;
                     Robot.Drivetrain.resetDriveDistance();
                 }
                 break;
-            case 3:
-                if(Robot.Elevator.changePos(3)){
-                    autoState = 4;
-                    Robot.Elevator.getLiftIntake().intake(true);
-                }
             default:
                 break;
         }
