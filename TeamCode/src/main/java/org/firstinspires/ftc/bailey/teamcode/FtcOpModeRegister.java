@@ -34,6 +34,8 @@ package org.firstinspires.ftc.bailey.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 
+import org.firstinspires.ftc.bailey.teamcode.opmodes.DrivePIDTEST;
+import org.firstinspires.ftc.bailey.teamcode.opmodes.GlyphScoreAuton;
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptNullOp;
 
 /**
@@ -68,6 +70,8 @@ public class FtcOpModeRegister implements OpModeRegister {
          */
 
         manager.register("PID Test[DRIVE]", DrivePIDTEST.class);
+        manager.register("Glyph Placement", GlyphScoreAuton.class);
+
 //        manager.register("Auto", TeleOpMode1.class);
 
 

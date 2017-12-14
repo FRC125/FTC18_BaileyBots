@@ -1,7 +1,8 @@
-package org.firstinspires.ftc.bailey.teamcode;
+package org.firstinspires.ftc.bailey.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
 import org.firstinspires.ftc.bailey.teamcode.BaileyBot;
 
 /**
@@ -9,8 +10,8 @@ import org.firstinspires.ftc.bailey.teamcode.BaileyBot;
  *
  */
 
-@Autonomous(name="DrivePIDTEST", group="Autons")
-public class DrivePIDTEST extends OpMode
+@Autonomous(name="GlyphScoreAuton", group="Autons")
+public class GlyphScoreAuton extends OpMode
 {
     BaileyBot Robot;
     int autoState;
@@ -37,11 +38,13 @@ public class DrivePIDTEST extends OpMode
     @Override
     public void loop() {
 
+        //drive logic
         switch (autoState) {
             case 0:
-                if(Robot.Drivetrain.distanceDrive(10.0)){ // drive forward 10 ft
+                if(Robot.Drivetrain.distanceDrive(3.0)){ // drive forward 3 ft
                     autoState = 1;
                     Robot.Drivetrain.resetDriveDistance();
+                    Robot.Elevator.changePos(4);// bring the glpyh all the way up
                 }
                 break;
             case 1:
@@ -55,6 +58,9 @@ public class DrivePIDTEST extends OpMode
                     autoState = 3;
                     Robot.Drivetrain.resetDriveDistance();
                 }
+                break;
+            case 3:
+                Robot.Elevator.getLiftIntake().intake(false); // spit out the glyph
                 break;
             default:
                 break;
