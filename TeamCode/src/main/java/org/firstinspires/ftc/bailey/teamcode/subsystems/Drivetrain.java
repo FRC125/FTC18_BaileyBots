@@ -50,7 +50,7 @@ public class Drivetrain {
      * @param rF   right front motor of the drivetrain
      * @param gyro gyro used for heading
      */
-    public Drivetrain(BMotor lF, BMotor lB, BMotor rF, BMotor rB, BGyro gyro) {
+    public Drivetrain(BMotor lF,  BMotor rF, BGyro gyro) {
         this.leftDrive = lF;
         this.rightDrive = rF;
 
