@@ -19,10 +19,8 @@ public class Drivetrain {
 
 
     //Motors declared
-    private BMotor leftFrontDrive;
-    private BMotor leftBackDrive;
-    private BMotor rightFrontDrive;
-    private BMotor rightBackDrive;
+    private BMotor leftDrive;
+    private BMotor rightDrive;
 
     //Gyro declared
     private BGyro gyro;
@@ -53,19 +51,17 @@ public class Drivetrain {
      * @param gyro gyro used for heading
      */
     public Drivetrain(BMotor lF, BMotor lB, BMotor rF, BMotor rB, BGyro gyro) {
-        this.leftFrontDrive = lF;
-        this.rightFrontDrive = rF;
-        this.leftBackDrive = lB;
-        this.rightBackDrive = rB;
+        this.leftDrive = lF;
+        this.rightDrive = rF;
 
-        //Drivetrain specifics initialized
+        //Drivetrain specifics initialized8eiidkjkmr vvv
         wheelCircumfrence = Math.PI * (1 / 3); // Feet
-        ticksPerRev = leftFrontDrive.getCountsPerRev();
+        ticksPerRev = leftDrive.getCountsPerRev();
         feetPerTick = wheelCircumfrence / ticksPerRev;
     }
 
     private double getRelativeEncoderPos() {
-        return leftFrontDrive.getCurrentPos() + relativeClicks;
+        return leftDrive.getCurrentPos() + relativeClicks;
     }
 
     public boolean distanceDrive(double ftDistance) { // REQUIRES HOLD HEADING!!!
@@ -82,7 +78,7 @@ public class Drivetrain {
     }
 
     public void resetDriveDistance() {
-        relativeClicks = leftFrontDrive.getCurrentPos();
+        relativeClicks = leftDrive.getCurrentPos();
         lastError = 0.;
         lastTime = 0.;
         timer.reset();
@@ -120,10 +116,8 @@ public class Drivetrain {
             lPower += turn;
             rPower -= turn;
         }
-        leftFrontDrive.setPower(lPower);
-        leftBackDrive.setPower(lPower);
-        rightFrontDrive.setPower(-rPower); //do you need to negate if the motor is set to reversed?
-        rightBackDrive.setPower(-rPower);
+        leftDrive.setPower(lPower);
+        rightDrive.setPower(-rPower); //do you need to negate if the motor is set to reversed?
     }
 
     /**

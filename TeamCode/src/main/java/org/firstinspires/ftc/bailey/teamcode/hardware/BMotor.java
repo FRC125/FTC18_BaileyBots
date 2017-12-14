@@ -117,6 +117,7 @@ public class BMotor {
         RevHDHex(2240), NeveRest(1120), CoreHex(288);
 
         private int countsPerRev;
+
         MotorType(int countsPerRev){
             this.countsPerRev = countsPerRev;
         }
