@@ -4,35 +4,21 @@ package org.firstinspires.ftc.bailey.teamcode;
  * Created by unbun on 12/12/2017.
  */
 
-import android.text.method.Touch;
-
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
  * The purpose of the BB18Map class is to work together with a Robot class to add easy implementation across op-modes and auto.
  * Holds named concurrent to that of the robot controller.
+ *
+ * Basically, the phones know the right-side motor as "right_front", but the code knows the right-side motor as "leftDrive". So this class sets them equal to each other.
  */
 public class BaileyMap {
 
     //Drivetrain
-    DcMotor leftFrontDrive;
-    DcMotor leftBackDrive;
-    DcMotor rightFrontDrive;
-    DcMotor rightBackDrive;
-
-    //Intake
-    DcMotor leftIntake;
-    DcMotor rightIntake;
-
-    //Elevator
-    DcMotor liftWinch;
-    TouchSensor liftSwitch;
-    DcMotor liftIntakeL;
-    DcMotor liftIntakeR;
-
+    DcMotor leftDrive;
+    DcMotor rightDrive;
     //IMU
     BNO055IMU gyro; // pronouncecd " ji - row"
 
@@ -49,15 +35,8 @@ public class BaileyMap {
      */
     public void init(HardwareMap hardwareMap) {
 
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "left_front"); // drivetrain - neverrest 40
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front"); // drivetrain - neverrest 40
-
-
-        liftWinch = hardwareMap.get(DcMotor.class, "lift_winch"); // neverrest 20
-        liftSwitch = hardwareMap.get(TouchSensor.class, "lift_switch"); // digtial 1
-        liftIntakeL = hardwareMap.get(DcMotor.class, "lift_intake_L"); // hex core
-        liftIntakeR = hardwareMap.get(DcMotor.class, "lift_intake_R"); // hex core
-
+        leftDrive = hardwareMap.get(DcMotor.class, "left_front"); // drivetrain - neverrest 40
+        rightDrive = hardwareMap.get(DcMotor.class, "right_front"); // drivetrain - neverrest 40
         gyro = hardwareMap.get(BNO055IMU.class, "imu"); //IMU
     }
 

@@ -7,6 +7,11 @@ import org.firstinspires.ftc.bailey.teamcode.hardware.BMotor;
 /**
  * Created by Josh on 11/6/2017.
  * unbun on 12/12/2017
+ *
+ *
+ * This subsystem has 2 motors (leftDrive and rightDrive). It also has a gyroscope sensor which helps us know what angle the robot is turning at</br>
+ * There is also some code that causes the robot to drive autonomously, without controller input. We'll get to that eventually.</br>
+ * Look for the code with 3 stars (***) to see the simple stuff
  */
 
 public class Drivetrain {
@@ -19,11 +24,11 @@ public class Drivetrain {
 
 
     //Motors declared
-    private BMotor leftDrive;
+    private BMotor leftDrive; //*** the 2 motor objects
     private BMotor rightDrive;
 
     //Gyro declared
-    private BGyro gyro;
+    private BGyro gyro; // *** the gyroscope sensor
 
 
     //Declaring drivetrain specifics for driving distance
@@ -51,8 +56,10 @@ public class Drivetrain {
      * @param gyro gyro used for heading
      */
     public Drivetrain(BMotor lF,  BMotor rF, BGyro gyro) {
+        //*** this is the constructor. We send 2 motors and gyros from the BaileyMap to this class to create a Drivetrain object
         this.leftDrive = lF;
         this.rightDrive = rF;
+        this.gyro = gyro;
 
         //Drivetrain specifics initialized8eiidkjkmr vvv
         wheelCircumfrence = Math.PI * (1 / 3); // Feet
@@ -108,7 +115,7 @@ public class Drivetrain {
      * @param rPower power to the right side of the drivetrain
      * @param holdHeading true --> don't turm; false --> use gyro & input to turn
      */
-    public void tankDrive(double lPower, double rPower, boolean holdHeading) {
+    public void tankDrive(double lPower, double rPower, boolean holdHeading) { //*** this is how we send power to the motors
         if (holdHeading) {// want to turn
             double gyroHeading = gyro.getAngle();
             double angleDifference = headingToHold - gyroHeading;
@@ -116,7 +123,7 @@ public class Drivetrain {
             lPower += turn;
             rPower -= turn;
         }
-        leftDrive.setPower(lPower);
+        leftDrive.setPower(lPower); // *** we set the power of the motor equal to the input recieved
         rightDrive.setPower(-rPower); //do you need to negate if the motor is set to reversed?
     }
 
