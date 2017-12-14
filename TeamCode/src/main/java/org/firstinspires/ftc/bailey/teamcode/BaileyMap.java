@@ -4,8 +4,6 @@ package org.firstinspires.ftc.bailey.teamcode;
  * Created by unbun on 12/12/2017.
  */
 
-import android.text.method.Touch;
-
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -18,10 +16,8 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 public class BaileyMap {
 
     //Drivetrain
-    DcMotor leftFrontDrive;
-    DcMotor leftBackDrive;
-    DcMotor rightFrontDrive;
-    DcMotor rightBackDrive;
+    DcMotor leftDrive;
+    DcMotor rightDrive;
 
     //Intake
     DcMotor leftIntake;
@@ -49,8 +45,8 @@ public class BaileyMap {
      */
     public void init(HardwareMap hardwareMap) {
 
-        leftFrontDrive = hardwareMap.get(DcMotor.class, "left_front"); // drivetrain - neverrest 40
-        rightFrontDrive = hardwareMap.get(DcMotor.class, "right_front"); // drivetrain - neverrest 40
+        leftDrive = hardwareMap.get(DcMotor.class, "left_front"); // drivetrain - neverrest 40
+        rightDrive = hardwareMap.get(DcMotor.class, "right_front"); // drivetrain - neverrest 40
 
 
         liftWinch = hardwareMap.get(DcMotor.class, "lift_winch"); // neverrest 20

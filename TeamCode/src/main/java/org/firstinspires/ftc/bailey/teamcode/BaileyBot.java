@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.bailey.teamcode;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.bailey.teamcode.hardware.BGyro;
@@ -19,10 +18,8 @@ import org.firstinspires.ftc.bailey.teamcode.subsystems.Elevator;
 public class BaileyBot {
 
     //Declaring drivetrain motors and object
-    public BMotor leftFrontDrive;
-    public BMotor leftBackDrive;
-    public BMotor rightFrontDrive;
-    public BMotor rightBackDrive;
+    public BMotor leftDrive;
+    public BMotor rightDrive;
     public Drivetrain Drivetrain;
 
     //Declaring intake motors and object
@@ -55,17 +52,15 @@ public class BaileyBot {
         robotMap.init(hardwareMap); //Receiving passed through map class for creating custom hardware
 
         //Assigning Drivetrain Motors and Object
-        leftFrontDrive = new BMotor(robotMap.leftFrontDrive, BMotor.MotorType.RevHDHex);
-        leftBackDrive = new BMotor(robotMap.leftBackDrive, BMotor.MotorType.RevHDHex);
-        rightFrontDrive = new BMotor(robotMap.rightFrontDrive, BMotor.MotorType.RevHDHex);
-        rightBackDrive = new BMotor(robotMap.rightBackDrive, BMotor.MotorType.RevHDHex);
+        leftDrive = new BMotor(robotMap.leftDrive, BMotor.MotorType.RevHDHex);
+        rightDrive = new BMotor(robotMap.rightDrive, BMotor.MotorType.RevHDHex);
         gyro = new BGyro(robotMap.gyro); // Assigning IMU
-        Drivetrain = new Drivetrain(leftFrontDrive, leftBackDrive, rightFrontDrive, rightBackDrive, gyro);
+        Drivetrain = new Drivetrain(leftDrive, rightDrive, gyro);
 
         //Assigning Intake Motors and Object
-        leftIntake = new BMotor(robotMap.leftIntake, BMotor.MotorType.RevHDHex);
-        rightIntake = new BMotor(robotMap.rightIntake, BMotor.MotorType.RevHDHex);
-        Intake = new Intake(leftIntake, rightIntake);
+//        leftIntake = new BMotor(robotMap.leftIntake, BMotor.MotorType.RevHDHex);
+//        rightIntake = new BMotor(robotMap.rightIntake, BMotor.MotorType.RevHDHex);
+//        Intake = new Intake(leftIntake, rightIntake);
 
 
         //Assigning Elevator Motors, Sensors, and Object
