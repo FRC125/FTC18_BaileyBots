@@ -31,10 +31,10 @@ public class Intake {
 
     /**
      * runs the intake
-     * @param spit true if you want to spit the cube instead of pull it in
+     * @param intake true if you want to spit the cube instead of pull it in
      */
-    public void intake(boolean spit) {
-        if(!spit) {
+    public void intake(boolean intake) {
+        if(!intake) {
             leftTake.setPower(1.0);
             rightTake.setPower(-1.0);
         }
