@@ -17,7 +17,6 @@ public class Elevator {
 
     //Harwade declared
     private BMotor winchMotor;
-    private Intake liftIntake; // dis getting really meta w/ a subsystem in a subsystem.
     private BTouchSensor limitSwitch;
 
     private final double WINCH_INCREMENT = 8.0;
@@ -30,10 +29,9 @@ public class Elevator {
     //Timing for control
     ElapsedTime timer = new ElapsedTime();
 
-    public Elevator(BMotor winch, BTouchSensor touch, Intake intake) {
+    public Elevator(BMotor winch, BTouchSensor touch) {
         this.winchMotor = winch;
         this.limitSwitch = touch;
-        this.liftIntake = intake;
     }
 
     /**
@@ -84,8 +82,5 @@ public class Elevator {
         return limitSwitch.isPressed();
     }
 
-    public Intake getLiftIntake(){
-        return this.liftIntake;
-    }
 }
 

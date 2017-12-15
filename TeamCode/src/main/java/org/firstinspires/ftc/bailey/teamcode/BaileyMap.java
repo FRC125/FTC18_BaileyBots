@@ -45,14 +45,8 @@ public class BaileyMap {
      */
     public void init(HardwareMap hardwareMap) {
 
-        leftDrive = hardwareMap.get(DcMotor.class, "left_front"); // drivetrain - neverrest 40
-        rightDrive = hardwareMap.get(DcMotor.class, "right_front"); // drivetrain - neverrest 40
-
-
         liftWinch = hardwareMap.get(DcMotor.class, "lift_winch"); // neverrest 20
         liftSwitch = hardwareMap.get(TouchSensor.class, "lift_switch"); // digtial 1
-        liftIntakeL = hardwareMap.get(DcMotor.class, "lift_intake_L"); // hex core
-        liftIntakeR = hardwareMap.get(DcMotor.class, "lift_intake_R"); // hex core
 
         gyro = hardwareMap.get(BNO055IMU.class, "imu"); //IMU
     }
