@@ -22,6 +22,15 @@ import static android.R.attr.right;
 public class TeleOpMode1 extends OpMode {
 
 
+    DcMotor leftFront = null;
+    DcMotor rightFront = null;
+    DcMotor leftBack = null;
+    DcMotor rightBack = null;
+
+    BGyro gyro = null;
+    double initialAngle;
+    double headingToHold;
+
     private ElapsedTime runTime = new ElapsedTime();
 
     private BaileyBot Robot;
@@ -39,6 +48,9 @@ public class TeleOpMode1 extends OpMode {
 
     @Override
     public void start(){
+
+        Robot.Elevator.run(0);
+        Robot.Drivetrain.tankDrive(0, 0);
         init_loop();
 
     }
@@ -50,19 +62,26 @@ public class TeleOpMode1 extends OpMode {
         //Driving
         float left = -gamepad1.left_stick_y;
         float right = -gamepad1.right_stick_y;
+        Robot.Drivetrain.tankDrive(left, right);
 
-
-        //Operating lift (simple rn, will implement incrementations later
+        //Operating lift
         float lift_pow = -gamepad2.left_stick_y;
-
         Robot.Elevator.run(lift_pow);
-//        if(gamepad2.a){
-//            Robot.Elevator.changePos(true);
-//        }else if(gamepad2.b){
-//            Robot.Elevator.changePos(false);
-//        }else{
-//            Robot.Elevator.run(lift_pow);
-//        }
+
+        if(gamepad2.y){
+            Robot.Elevator.changePos(true);
+        }else if(gamepad2.a){
+            Robot.Elevator.changePos(false);
+        }
+
+        //Operating intake
+        if(gamepad2.left_bumper){
+            Robot.Elevator.getLiftIntake().intake(true);
+        }else if(gamepad2.right_bumper){
+            Robot.Elevator.getLiftIntake().intake(false);
+        }else{
+            Robot.Elevator.getLiftIntake().stopIntake();
+        }
 
         publishData();
 
@@ -73,6 +92,7 @@ public class TeleOpMode1 extends OpMode {
         publishData();
 
         Robot.Elevator.run(0);
+        Robot.Drivetrain.tankDrive(0, 0);
     }
 
     private void publishData(){

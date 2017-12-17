@@ -15,6 +15,7 @@ public class Intake {
     private BMotor leftTake = null;
     private BMotor rightTake = null;
 
+    private final double WHEEL_DIAMETER = 2.875; // inches
     //Timing
     private ElapsedTime timer = new ElapsedTime();
     private double relativeTime = 0;
@@ -31,10 +32,10 @@ public class Intake {
 
     /**
      * runs the intake
-     * @param spit true if you want to spit the cube instead of pull it in
+     * @param in true if you want to spit the cube instead of pull it in
      */
-    public void intake(boolean spit) {
-        if(!spit) {
+    public void intake(boolean in) {
+        if(!in) {
             leftTake.setPower(1.0);
             rightTake.setPower(-1.0);
         }
@@ -47,6 +48,10 @@ public class Intake {
     public void stopIntake(){
         leftTake.setPower(0);
         rightTake.setPower(0);
+    }
+
+    public double getWheelDiameterInches(){
+        return this.WHEEL_DIAMETER;
     }
 
     public void resetTiming() {

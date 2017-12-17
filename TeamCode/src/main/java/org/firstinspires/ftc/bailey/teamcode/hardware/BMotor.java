@@ -87,6 +87,7 @@ public class BMotor {
         return m.getCurrentPosition();
     }
 
+
     /**
      * Sets motor power.
      * @param power amount of power.
