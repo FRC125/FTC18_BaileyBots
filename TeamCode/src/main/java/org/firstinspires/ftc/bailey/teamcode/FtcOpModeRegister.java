@@ -34,6 +34,10 @@ package org.firstinspires.ftc.bailey.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
 
+import org.firstinspires.ftc.bailey.teamcode.opmodes.DriveForward;
+import org.firstinspires.ftc.bailey.teamcode.opmodes.DrivePIDTest;
+import org.firstinspires.ftc.bailey.teamcode.opmodes.GlyphScore;
+import org.firstinspires.ftc.bailey.teamcode.opmodes.TeleOpMode1;
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptNullOp;
 
 /**
@@ -68,7 +72,10 @@ public class FtcOpModeRegister implements OpModeRegister {
          */
 
         manager.register("TeleOp1", TeleOpMode1.class);
-//        manager.register("Auto", TeleOpMode1.class);
+
+        manager.register("GlyphScore", GlyphScore.class);
+        manager.register("DriveForward", DriveForward.class);
+        manager.register("TestAuto", DrivePIDTest.class);
 
 
     }

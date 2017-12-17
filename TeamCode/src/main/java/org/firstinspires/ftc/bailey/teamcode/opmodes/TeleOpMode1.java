@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.bailey.teamcode;
+package org.firstinspires.ftc.bailey.teamcode.opmodes;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.bailey.teamcode.BaileyBot;
 import org.firstinspires.ftc.bailey.teamcode.hardware.BGyro;
 
 import static android.R.attr.isGame;
@@ -92,7 +93,6 @@ public class TeleOpMode1 extends OpMode {
         publishData();
 
         Robot.Elevator.run(0);
-        Robot.Drivetrain.tankDrive(0, 0);
     }
 
     private void publishData(){

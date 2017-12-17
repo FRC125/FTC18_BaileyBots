@@ -2,6 +2,7 @@ package org.firstinspires.ftc.bailey.teamcode.subsystems;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.bailey.teamcode.Util;
 import org.firstinspires.ftc.bailey.teamcode.hardware.BMotor;
 import org.firstinspires.ftc.bailey.teamcode.hardware.BTouchSensor;
 
@@ -43,22 +44,13 @@ public class Elevator {
         this.winchMotor.setPower(power);
     }
 
-    private double getRelativeEncoderPos() {
-        return winchMotor.getCurrentPos() + relativeClicks;
-    }
-
     /**
-     * @param up true --> move up; false --> move down
+     *
+     * @param setpoint position in inches to run elevator to
+     * @return
      */
-    public boolean changePos(boolean up){
-        double setpoint; // in feet
-
-
-        if(up){
-            setpoint = Math.min(MAX_HEIGHT, winchMotor.getCurrentPos() + WINCH_INCREMENT);
-        }else{
-            setpoint = Math.max(MIN_HEIGHT, winchMotor.getCurrentPos() - WINCH_INCREMENT);
-        }
+    public boolean runWithPosition(double setpoint){
+        setpoint = Util.constrictRange(MIN_HEIGHT, setpoint, MAX_HEIGHT);
 
         //ticks = inches * (ticks /rev ) * (rev/inches)
         double circ = this.liftIntake.getWheelDiameterInches() * Math.PI;
@@ -73,6 +65,32 @@ public class Elevator {
 
         run(pow);
         return POS_TOLELRANCE > Math.abs(diff); // return true when diff is w/in tolerance
+    }
+
+    /**
+     * @param up true --> move up; false --> move down
+     */
+    public boolean changePos(boolean up){
+        if(up){
+            return runWithPosition(Math.max(MAX_HEIGHT, winchMotor.getCurrentPos() + WINCH_INCREMENT));
+        }else{
+            return runWithPosition(Math.min(MIN_HEIGHT, winchMotor.getCurrentPos() - WINCH_INCREMENT));
+        }
+    }
+
+    /**
+     *
+     * @param position 0-4 to represent different positions.(corresponds to how many glyphs up you want to go
+     * @return
+     */
+    public boolean changePos(int position){
+        double setpoint =  WINCH_INCREMENT * position; // in feet
+        return runWithPosition(position);
+    }
+
+
+    private double getRelativeEncoderPos() {
+        return winchMotor.getCurrentPos() + relativeClicks;
     }
 
     public void resetWinch() {

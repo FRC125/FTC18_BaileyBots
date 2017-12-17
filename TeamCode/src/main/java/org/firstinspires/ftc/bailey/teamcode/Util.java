@@ -2,6 +2,7 @@ package org.firstinspires.ftc.bailey.teamcode;
 
 /**
  * Created by josh on 11/28/17.
+ * Unnas on 12/16/17
  */
 
 public class Util {
@@ -15,6 +16,16 @@ public class Util {
      */
     public static double stickDeadband(double value, double deadband, double center) {
         return (value < (center + deadband) && value > (center - deadband)) ? center : value;
+    }
+
+    public static double constrictRange(double min, double value, double max){
+        if(value > max){
+            return max;
+        }else if(value <min){
+            return min;
+        }else{
+            return value;
+        }
     }
 
 }
