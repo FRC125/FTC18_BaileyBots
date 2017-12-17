@@ -7,6 +7,7 @@ package org.firstinspires.ftc.bailey.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 /**
@@ -25,7 +26,7 @@ public class BaileyMap {
 
     //Elevator
     DcMotor liftWinch;
-    TouchSensor liftSwitch;
+    DigitalChannel liftSwitch;
     DcMotor liftIntakeL;
     DcMotor liftIntakeR;
 
@@ -46,7 +47,7 @@ public class BaileyMap {
     public void init(HardwareMap hardwareMap) {
 
         liftWinch = hardwareMap.get(DcMotor.class, "lift_winch"); // neverrest 20
-        liftSwitch = hardwareMap.get(TouchSensor.class, "lift_switch"); // digtial 1
+        liftSwitch = hardwareMap.get(DigitalChannel.class, "lift_switch"); // digtial 1
 
         gyro = hardwareMap.get(BNO055IMU.class, "imu"); //IMU
     }

@@ -22,15 +22,6 @@ import static android.R.attr.right;
 public class TeleOpMode1 extends OpMode {
 
 
-    DcMotor leftFront = null;
-    DcMotor rightFront = null;
-    DcMotor leftBack = null;
-    DcMotor rightBack = null;
-
-    BGyro gyro = null;
-    double initialAngle;
-    double headingToHold;
-
     private ElapsedTime runTime = new ElapsedTime();
 
     private BaileyBot Robot;
@@ -60,16 +51,18 @@ public class TeleOpMode1 extends OpMode {
         float left = -gamepad1.left_stick_y;
         float right = -gamepad1.right_stick_y;
 
+
         //Operating lift (simple rn, will implement incrementations later
         float lift_pow = -gamepad2.left_stick_y;
 
-        if(gamepad2.a){
-            Robot.Elevator.changePos(true);
-        }else if(gamepad2.b){
-            Robot.Elevator.changePos(false);
-        }else{
-            Robot.Elevator.run(lift_pow);
-        }
+        Robot.Elevator.run(lift_pow);
+//        if(gamepad2.a){
+//            Robot.Elevator.changePos(true);
+//        }else if(gamepad2.b){
+//            Robot.Elevator.changePos(false);
+//        }else{
+//            Robot.Elevator.run(lift_pow);
+//        }
 
         publishData();
 
@@ -80,7 +73,6 @@ public class TeleOpMode1 extends OpMode {
         publishData();
 
         Robot.Elevator.run(0);
-        Robot.Drivetrain.tankDrive(0, 0);
     }
 
     private void publishData(){

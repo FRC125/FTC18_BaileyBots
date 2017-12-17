@@ -35,16 +35,10 @@ public class Elevator {
     }
 
     /**
-     *@param power power to run winch
+     * @param power power to run winch
      */
-    public void run(double power){
-        if(this.limitSwitch.isPressed()){
-            this.resetWinch();
-            this.winchMotor.setPower(1.0);
-            this.winchMotor.setPower(0.);
-        }else {
-            this.winchMotor.setPower(power);
-        }
+    public void run(double power) {
+        this.winchMotor.setPower(power);
     }
 
     private double getRelativeEncoderPos() {
@@ -54,18 +48,17 @@ public class Elevator {
     /**
      * @param up true --> move up; false --> move down
      */
-    public boolean changePos(boolean up){
-        double setpoint;
+    public boolean changePos(boolean up) {
+        double setpoint = 0;
 
-        if(up){
-            setpoint = Math.max(MAX_HEIGHT, winchMotor.getCurrentPos() + WINCH_INCREMENT);
-        }else{
-            setpoint = Math.min(MIN_HEIGHT, winchMotor.getCurrentPos() - WINCH_INCREMENT);
+        if (up) {
+            setpoint = Math.min(MAX_HEIGHT, winchMotor.getCurrentPos() + WINCH_INCREMENT);
+        } else {
+            setpoint = Math.max(MIN_HEIGHT, winchMotor.getCurrentPos() - WINCH_INCREMENT);
         }
 
         double diff = setpoint - winchMotor.getCurrentPos();
-        double pow = kP * diff;
-        run(pow);
+        run(1.0);
         return POS_TOLELRANCE > Math.abs(diff); // return true when diff is w/in tolerance
     }
 
@@ -74,11 +67,11 @@ public class Elevator {
         relativeClicks = winchMotor.getCurrentPos();
     }
 
-    public double getPosition(){
+    public double getPosition() {
         return winchMotor.getCurrentPos();
     }
 
-    public boolean getSwtichStatus(){
+    public boolean getSwtichStatus() {
         return limitSwitch.isPressed();
     }
 

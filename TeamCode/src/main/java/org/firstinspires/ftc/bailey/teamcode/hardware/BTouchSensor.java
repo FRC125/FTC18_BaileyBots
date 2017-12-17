@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.bailey.teamcode.hardware;
 
+import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
 
@@ -11,7 +12,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 public class BTouchSensor {
 
     //"Real" sensor
-    private TouchSensor sensor;
+    private DigitalChannel sensor;
 
     // State used for updating telemetry and getting angles
     private boolean pressed;
@@ -21,12 +22,12 @@ public class BTouchSensor {
      *
      * @param s "real" touch sensor
      */
-    public BTouchSensor(TouchSensor s) {
+    public BTouchSensor(DigitalChannel s) {
         this.sensor = s;
     }
 
     public boolean isPressed() {
-        return sensor.isPressed();
+        return sensor.getState();
     }
 
 }
